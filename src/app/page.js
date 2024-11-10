@@ -1,101 +1,88 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  // loan options
+  // const loans = ["Home ", "Car", "Equipment", "Personal", "Business", "Insurance"];
+  // loan choose options
+  const options = {
+    1: [
+      { id: 1, title: "Discover your perfect loan" },
+      { id: 2, label: "Home" },
+      { id: 3, label: "Car" },
+      { id: 2, label: "Equipment" },
+      { id: 3, label: "Personal" },
+      { id: 2, label: "Business" },
+      { id: 3, label: "Insurance" },
+    ],
+    1: [
+      { id: 1, title: "why are you applying?" },
+      { id: 2, label: "I want to refinance my loan" },
+      { id: 3, label: "I want to purchase a new property" },
+    ],
+    2: [
+      { id: 1, title: "Have you found your property?" },
+      { id: 2, label: "No, I'm still on the hunt" },
+      { id: 3, label: "Yes, i've found a property" },
+    ],
+    3: [
+      { id: 1, title: "This loan is for" },
+      { id: 2, label: "It's Just me " },
+      { id: 3, label: "There's two of us" },
+    ],
+    4: [
+      { id: 1, title: "I'm looking for" },
+      { id: 2, label: "A home to live in " },
+      { id: 3, label: "An investment property" },
+    ],
+  };
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const [step, setStep] = useState(1);
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleButtonClick = (id) => {
+    setSelectedOption(id);
+    if (step < 3) {
+      setStep(step + 1);
+    }
+  };
+
+  return (
+    <div className="w-full h-screen flex items-center justify-center bg-black">
+      <div className="w-1/4 h-3/4">
+        <div className="text-2xl w-full h-1/6 flex items-center justify-between">
+          <div className="flex-grow text-center mr-8 text-[#f39d8e] font-bold">
+            Discover your perfect loan{" "}
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className="w-full flex flex-wrap justify-between">
+          {loans.map((name, index) => (
+            <button
+              key={index}
+              className="cursor:point m-2 w-36 h-20 rounded-xl text-base bg-[#f39d8e] mb-4 hover:bg-yellow-500"
+            >
+              {name}
+            </button>
+          ))}
+        </div>
+        <div>
+          <h1>버튼 선택</h1>
+          <h2>현재 단계: {step}</h2>
+
+          <div>
+            {options[step].map((option) => (
+              <div key={options.id} onClick={() => handleButtonClick(option.id)}>{option.title}</div>
+              <button key={option.id} onClick={() => handleButtonClick(option.id)}>
+                {option.label}
+              </button>
+            ))}
+          </div>
+
+          {selectedOption && <div>선택된 옵션 ID: {selectedOption}</div>}
+        </div>
+      </div>
     </div>
   );
 }
