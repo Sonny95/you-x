@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import axios from "axios";
 
 export default function Home() {
   const options = {
@@ -40,8 +41,21 @@ export default function Home() {
   const [step, setStep] = useState(1);
   const [selectedOption, setSelectedOption] = useState(null);
 
+  // send a data immediatly and go next step
   const handleButtonClick = (id) => {
     setSelectedOption(id);
+    axios
+      .post("http://localhost:8000/api/saveLoanStep", {
+        step,
+        selectedOption: id,
+      })
+      .then((response) => {
+        console.log(response.data.message); // 서버에서 받은 응답 메시지
+      })
+      .catch((error) => {
+        console.error("Error saving data:", error);
+      });
+
     if (step < 5) {
       setStep(step + 1);
     }
