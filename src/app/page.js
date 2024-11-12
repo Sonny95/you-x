@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Home() {
@@ -44,7 +45,7 @@ export default function Home() {
 
   const handleButtonClick = (id) => {
     setSelectedOption(id);
-    if (step < 6) {
+    if (step < 5) {
       setStep(step + 1);
     }
   };
@@ -78,14 +79,16 @@ export default function Home() {
           )}
         </div>
 
-        <div className="w-full flex justify-center items-center mb-4">
-          <div className="text-2xl text-center text-[#f39d8e] font-bold">
-            Expecting Property Price
+        {/* Centered button */}
+        {step === 5 && (
+          <div className="w-full flex flex-col justify-center items-center mt-8">
+            <Link href={"/updateDetail"}>
+              <button className="font-bold text-xl cursor-pointer m-5 w-28 h-14 rounded-xl bg-[#f39d8e] hover:bg-yellow-500 ">
+                Next
+              </button>
+            </Link>
           </div>
-          <input placeholder="600,000" className="w-"></input>
-          <div className="text-2xl text-center text-[#f39d8e] font-bold">Your deposit price</div>
-          <input placeholder="60,000" className="w-"></input>
-        </div>
+        )}
       </div>
     </div>
   );
