@@ -5,9 +5,6 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function Home() {
-  // loan options
-  // const loans = ["Home ", "Car", "Equipment", "Personal", "Business", "Insurance"];
-  // loan choose options
   const options = {
     1: [
       { id: 1, title: "Discover your perfect loan" },
@@ -83,7 +80,7 @@ export default function Home() {
         {step === 5 && (
           <div className="w-full flex flex-col justify-center items-center mt-8">
             <Link href={"/updateDetail"}>
-              <button className="font-bold text-xl cursor-pointer m-5 w-28 h-14 rounded-xl bg-[#f39d8e] hover:bg-yellow-500 ">
+              <button className="font-bold text-xl cursor-pointer m-5 w-40 text-white h-14 rounded-xl bg-[#f39d8e] hover:bg-yellow-500 ">
                 Next
               </button>
             </Link>
