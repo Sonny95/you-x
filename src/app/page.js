@@ -42,7 +42,7 @@ export default function Home() {
   const [selectedOption, setSelectedOption] = useState(null);
 
   // send a data immediatly and go next step
-  const handleButtonClick = (id) => {
+  const submitButtonClick = (id) => {
     setSelectedOption(id);
     axios
       .post("http://localhost:8000/api/saveLoanStep", {
@@ -50,10 +50,10 @@ export default function Home() {
         selectedOption: id,
       })
       .then((response) => {
-        console.log(response.data.message); // 서버에서 받은 응답 메시지
+        console.log(response.data.message);
       })
       .catch((error) => {
-        console.error("Error saving data:", error);
+        console.error("Error saving data", error);
       });
 
     if (step < 5) {
@@ -82,7 +82,7 @@ export default function Home() {
               <button
                 key={option.id}
                 className="font-bold text-xl cursor-pointer m-5 w-2/5 h-20 rounded-xl bg-[#f39d8e] mb-4 hover:bg-yellow-500"
-                onClick={() => handleButtonClick(option.id)}
+                onClick={() => submitButtonClick(option.id)}
               >
                 {option.label}
               </button>
