@@ -6,6 +6,7 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function Home() {
+  //loan options
   const options = {
     1: [
       { id: 1, title: "Discover your perfect loan" },

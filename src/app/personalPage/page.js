@@ -13,6 +13,7 @@ function PersonalPge() {
     { title: "liabilities", value: 70000, color: "#93b6ee" },
   ];
 
+  //pie chart income and asset percentage
   const incomeDataTotal = incomeData.reduce((acc, item) => acc + item.value, 0);
   const assetDataTotal = incomeData.reduce((acc, item) => acc + item.value, 0);
 

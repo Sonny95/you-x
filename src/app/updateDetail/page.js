@@ -14,6 +14,7 @@ function UpdateDetail() {
   const [assets, setAssets] = useState("");
   const [liabilities, setLiabilities] = useState("");
 
+  //send personal data
   const submitButton = () => {
     axios
       .post("http://localhost:8000/api/saveDetail", {
